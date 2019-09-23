@@ -1,0 +1,62 @@
+.menu-element {
+	height: 200px;
+	width: 550px;
+}
+
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.modal-dialog {
+    position: fixed;
+    margin-top: 0;
+    margin-left: 10%;
+    width: 150%;
+    height: 100%;
+    padding: 100px;
+}
+
+.modal-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 170%;
+    box-shadow: none;
+}
+
+.modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 50px;
+    padding: 10px;
+    background-color: #03877b;
+    border: 0;
+    width: 100%;
+}
+
+.modal-title {
+    font-weight: 300;
+    font-size: 2em;
+    color: #fff;
+    line-height: 30px;
+    width: 100%;
+}
+.modal-body {
+    position: absolute;
+    top: 50px;
+    bottom: 60px;
+    width: 100%;
+    font-weight: 300;
+    overflow: auto;
+}

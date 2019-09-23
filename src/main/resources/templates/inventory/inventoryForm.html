@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Inventario</title>
+</head>
+<body class="fondo">
+	<section layout:fragment="content" th:remove="tag">
+	<br>
+	<br>
+	<div class="container bkg-form">
+		<div>
+			<table id="idInventoryTable" class="table">
+			  <thead class="bkg-thead-table">
+			    <tr>
+	<!-- 		      <th scope="col">Id</th> -->
+			      <th scope="col">Contendor</th>
+			      <th scope="col">Terminal</th>
+			      <th scope="col">Fecha Asignación</th>
+			      <th scope="col">Fecha Escritura</th>
+			      <th scope="col">Fecha Registro</th>
+			      <th scope="col" style="display: none;">Año</th>
+			      <th scope="col" style="display: none;">Maquinaria</th>
+			      <th scope="col" style="display: none;">Tecnología</th>
+	<!-- 		      <th scope="col">SubTipo GS</th> -->
+			      <th scope="col">Placas</th>
+			      <th scope="col">Tipo Remolque</th>
+			      <th scope="col">Condición</th>
+			      <th scope="col">Origen</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="data:${inventoryList}">
+	<!-- 		      <th th:text="${data.inventoryId}"></th> -->
+			      <td th:text="${data.container}"></td>
+			      <td th:text="${data.terminal}"></td>
+			      <td th:text="${data.dateAsignation}"></td>
+			      <td th:text="${data.date}"></td>
+			      <td th:text="${data.dateRegistered}"></td>
+			      <td th:text="${data.year}" style="display: none;"></td>
+			      <td th:text="${data.machinery}" style="display: none;"></td>
+			      <td th:text="${data.technology}" style="display: none;"></td>
+	<!-- 		      <td th:text="${data.subTipoGS}"></td> -->
+			      <td th:text="${data.plaque}"></td>
+			      <td th:text="${data.tipoRemolque}"></td>
+			      <td th:text="${data.condition}"></td>
+			      <td th:text="${data.origin}"></td>
+			    </tr>		   
+			  </tbody>
+			</table>
+		</div>
+	</div>		
+	<br>
+	<br>
+	<br>
+	<br>
+	</section>
+</body>
+</html>

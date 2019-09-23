@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/menus.css}" />
+<title>M-R</title>
+</head>
+<body>
+	<section layout:fragment="content" th:remove="tag">
+		<div class="info">
+			<br>
+			<div class="container">
+				<div class="abs-center">
+					 <div class="form-group">
+					 	<img th:src="@{/images/arrive.png}" class="menu-element" onclick="openEntranceWeb()" tap="openEntranceMovil()"/>
+						<img th:src="@{/images/departures.png}" class="menu-element" />
+						<img th:src="@{/images/inventary.png}" class="menu-element"/>
+						<img th:src="@{/images/myr.png}" class="menu-element" />
+						<img th:src="@{/images/costs.png}" class="menu-element"/>
+						<img th:src="@{/images/appointment.png}" class="menu-element"/>
+					 </div>
+				</div>
+			</div>				
+			<br>
+			<br>
+		</div>
+	</section>
+	
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Terminales</title>
+</head>
+<body class="fondo">
+	<h1>Navieras</h1>
+	<section layout:fragment="content" th:remove="tag">
+	<br>
+	<div class="container bkg-form">
+		<div class="abs-center">
+			<div class="form-group">
+			<h1 class="align-object">Terminales</h1>
+				<div class="row">
+					<div class="col">
+						<label for="idAddTerminal">Naviera:</label>
+						<input id="idAddTerminal" type="text" class="form-control" placeholder="Terminal">
+					</div>
+					<div class="col">
+						<label for="idAddCode">Código:</label>
+						<input id="idAddCode" type="text" class="form-control" placeholder="Código (Máximo 3 caractéres)" size="3" maxlength="3">
+					</div>										
+				</div>
+				<br>
+				<input id="idSearch" type="button" class="btn color-buttons"	value="Agregar" onclick="addTerminal()"> <br> <br>
+				<table id="idTerminalTable" class="table">
+					<thead class="bkg-thead-table">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Código</th>
+							<th scope="col">Terminal</th>
+							<th scope="col">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="data:${terminalList}">
+							<td th:text="${data.identifier}"></td>
+							<td th:text="${data.description}"></td>
+							<td th:text="${data.code}"></td>
+							<td>
+								<button type="button" class="btn btn-danger deleteTerminal">X</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+	</section>
+</body>
+</html>

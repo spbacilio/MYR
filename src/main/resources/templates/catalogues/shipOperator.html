@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Navieras</title>
+</head>
+<body>
+	<h1>Navieras</h1>
+	<section layout:fragment="content" th:remove="tag">	
+		<div class="container">
+            <div class="abs-center">
+                <div class="form-group">
+                	<h1>Navieras</h1>
+                	<h2>Lista de Activos</h2>
+                    <label for="idNaviera">Naviera:</label>
+                    <input id="idNaviera" type="text" class="form-control" placeholder="Naviera">                  
+                    <br>
+                    <input id="idSearch" type="button" class="btn btn-primary" value="Agregar">
+                    <br>
+                    <br>
+                    <table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Código</th>
+					      <th scope="col">Eliminar</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">1</th>
+					      <td>1</td>
+					      <td>HAPAG LLOYD</td>
+					      <td>X</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">2</th>
+					      <td>2</td>
+					      <td>Scorpio</td>
+					      <td>X</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">3</th>
+					      <td>3</td>
+					      <td>Test</td>
+					      <td>X</td>
+					    </tr>
+					  </tbody>
+					</table>
+                </div>
+            </div>
+        </div>
+	</section>
+	<h1>Relacionar Terminales</h1>
+	<section layout:fragment="content" th:remove="tag">
+		<div>
+			<label for="idShipOwner">Naviera:</label>
+            <select id="idShipOwner" name="idShipOwner" class="form-control">
+               <option value="">Seleccionar Naviera</option>
+               <option value="">COSCO</option>
+               <option value="">HAPAG LLOYD</option>
+            </select>
+            <label for="idTerminal">Terminal:</label>
+            <select id="idTerminal" name="idTerminal" class="form-control">
+               <option value="">Seleccionar Terminal</option>
+               <option value="">Ensenada</option>
+               <option value="">Aguascalientes</option>
+            </select>
+		</div>
+		<div>
+			<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">AAR</th>
+					      <th scope="col">Desciption</th>
+					       <th scope="col">Eliminar</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">1</th>
+					      <td>1</td>
+					       <td>1333</td>
+					      <td>Veracruz</td>
+					      <td>X</td>
+					    </tr>
+					  </tbody>
+			</table>
+		</div>
+	</section>	
+</body>
+</html>

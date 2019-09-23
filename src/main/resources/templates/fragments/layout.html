@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/jquery.dataTables.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/radioButton.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
+
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/entrance/entrance.js}"></script>
+<script type="text/javascript" th:src="@{/js/all.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/app.js}"></script>
+<script type="text/javascript" th:src="@{/js/yards/yards.js}"></script>
+<script type="text/javascript" th:src="@{/js/terminals/terminals.js}"></script>
+<script type="text/javascript" th:src="@{/js/inOut/arrives.js}"></script>
+<script type="text/javascript" th:src="@{/js/myr/myr.js}"></script>
+
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/images/TMM-logo.png}">
+<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">MYR</title>
+</head>
+<body>
+	<th:block th:replace="fragments/header :: header" />
+	<div class="w3-container">
+		<th:block layout:fragment="content" />
+	</div>
+	<th:block th:replace="fragments/footer :: footer" />
+</body>
+</html> 

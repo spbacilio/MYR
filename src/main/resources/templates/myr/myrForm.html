@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{fragments/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>M-R</title>
+</head>
+
+<body class="fondo">
+    <section layout:fragment="content" th:remove="tag">
+        <br>
+        <div class="container bkg-form">
+            <div class="abs-center">
+                <div class="form-group">
+                    <div class="container">
+                        <div class="col">
+                            <div class="row">
+                                <label for="idPrefixMyr">Prefijo del equipo:</label>
+                                <input id="idPrefixMyr" type="text" class="form-control" placeholder="Prefijo" size="4"
+                                    maxlength="4">
+                            </div>
+                            <div class="row">
+                                <label for="idNumberMyr">Número:</label>
+                                <input id="idNumberMyr" type="text" class="form-control" placeholder="Número" size="7"
+                                    maxlength="7">
+                            </div>
+                        </div>
+                        <br>
+                        <input id="idSearchMyr" type="button" class="btn color-buttons" value="Buscar"
+                            onclick="validateMyrContainer()">
+                        <br>
+                        <br>
+                    </div>
+                    <div class="container">
+                        <div class="col">
+                            <div class="row">
+                                <label for="idEquipmentMyr">Equipo Ligado:</label>
+                                <input id="idEquipmentMyr" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="form-group row">
+                                <label for="userLogged">Usuario:</label>
+                                <input id="userLogged" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="row">
+                                <label for="LastUserLogged">Último Usuario:</label>
+                                <input id="LastUserLogged" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="row">
+                                <label for="LastEventDate">Fecha de Último Evento:</label>
+                                <input id="LastEventDate" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="row">
+                                <label for="LastDateTime">Hora de Último Evento:</label>
+                                <input id="LastDateTime" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="row">
+                                <label for="LastEvent">Último Evento:</label>
+                                <input id="LastEvent" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="row">
+                                <label for="idTerminalMyr">Terminal:</label>
+                                <input id="idTerminalMyr" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="row">
+                                <label for="sizeMyr">Tamaño:</label>
+                                <input id="sizeMyr" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="row">
+                                <label for="docPrev">Doc. Previo:</label>
+                                <input id="docPrev" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="row">
+                                <label for="damageSummary">Resumen Daños:</label>
+                                <input id="damageSummary" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <div class="row">
+                                <label for="idconsignee">Consignatario:</label>
+                                <input id="idconsignee" type="text" disabled="disabled" class="form-control">
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Carousel -->
+                    <div id="idCaroselContainersPick" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div id="pick1" class="carousel-item active">
+                                <img id="frame1" class="d-block w-100 image-carousel" th:src="@{/images/img1.jpg}"
+                                    alt="First slide">
+                            </div>
+                            <div id="pick2" class="carousel-item">
+                                <img id="frame2" class="d-block w-100 image-carousel" th:src="@{/images/img2.jpg}"
+                                    alt="Second slide">
+                            </div>
+                            <div id="pick3" class="carousel-item">
+                                <img id="frame3" class="d-block w-100 image-carousel" th:src="@{/images/img3.jpg}"
+                                    alt="Third slide">
+                            </div>
+                            <div id="pick4" class="carousel-item">
+                                <img id="frame4" class="d-block w-100 image-carousel" th:src="@{/images/img4.jpg}"
+                                    alt="Four slide">
+                            </div>
+                            <div id="pick5" class="carousel-item">
+                                <img id="frame5" class="d-block w-100 image-carousel" th:src="@{/images/img5.jpg}"
+                                    alt="Five slide">
+                            </div>
+                        </div>
+                        <!-- Carousel controls -->
+                        <a class="carousel-control-prev" href="#idCaroselContainersPick" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#idCaroselContainersPick" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <!-- Camera -->
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="file" accept="image/*" capture="camera" id="camera" class="form-control">
+                        </div>
+                        <button type="button" class="btn btn-danger" onclick="deleteImage()">Eliminar</button>
+                    </div>
+                    <script>
+                        var camera = document.getElementById('camera');
+                        camera.addEventListener('change', function (e) {
+                            var file = e.target.files[0];
+                            contador += 1;
+                            if (contador < 6) {
+                                //$("#pick"+contador).css("display", "inline");
+                                var elementId = "frame" + contador;
+                                console.log("Pick selected: " + "#pick" + contador);
+                                console.log("Frame selected: " + elementId);
+                                var frame = document.getElementById(elementId);
+                                // Do something with the image file.
+                                frame.src = URL.createObjectURL(file);
+                            }
+                        });
+                    </script>
+                    <br>
+                    <button type="button" class="btn color-buttons" onclick="openModalJ2()">Crear J2</button>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL J2 -->
+        <!-- Modal para crear nueva facturación por Evento -->
+        <div class="modal fade" id="modalCreateOrderEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="false" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header align-object">
+                        <h1 class="modal-title table-title" id="myModalLabel"></h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <form th:object="${myrForm}" method="POST">
+                                <div>
+                                    <label>Sección a Inspeccionar</label>
+                                    <select id="generalSection" th:field="*{sectionIdentifier}" class="form-control"
+                                        onchange="getEIRComponents()">
+                                        <option value="">Seleccionar</option>
+                                        <option th:each="entry : ${containerSection.entrySet()}" th:value="${entry.key}"
+                                            th:text="${entry.value.sectionDescription}"></option>
+                                    </select>
+                                    <label>Componente</label>
+                                    <select id="eirComponents" class="form-control" onchange="getDamageLocations()">
+                                        <option value="">Seleccionar</option>
+                                        <option></option>
+                                    </select>
+                                    <label>Daño asociado</label>
+                                    <select id="eirDamage" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        <option></option>
+                                    </select>
+                                    <label>Localización del daño</label>
+                                    <select id="idDamageLocation" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        <option></option>
+                                    </select>
+                                    <label>Razón del daño</label>
+                                    <select id="reasonDamageId" th:field="*{reasonDamageIdentifier}"
+                                        class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        <option th:each="p : ${reasonDamageList}" th:value="${p.reasonDamageIdentifier}"
+                                            th:text="${p.reasonDamageDescription}"></option>
+                                    </select>
+                                </div>
+                                <br>
+                                <!-- Carousel -->
+                                <!--                     <div id="idCaroselContainersDamage" class="carousel slide" data-ride="carousel">                     -->
+                                <!--                         <div class="carousel-inner">                         -->
+                                <!--                             <div id="pickD1" class="carousel-item active">                            	 -->
+                                <!--                                 <img id="frameD1" class="d-block w-100 image-carousel" th:src="@{/images/img1.jpg}" alt="First slide"> -->
+                                <!--                             </div> -->
+                                <!--                             <div id="pickD2" class="carousel-item"> -->
+                                <!--                                 <img id="frameD2" class="d-block w-100 image-carousel" th:src="@{/images/img2.jpg}" alt="Second slide"> -->
+                                <!--                             </div> -->
+                                <!--                             <div id="pickD3" class="carousel-item"> -->
+                                <!--                                 <img id="frameD3" class="d-block w-100 image-carousel" th:src="@{/images/img3.jpg}" alt="Third slide"> -->
+                                <!--                             </div> -->
+                                <!--                             <div id="pickD4" class="carousel-item"> -->
+                                <!--                                 <img id="frameD4" class="d-block w-100 image-carousel" th:src="@{/images/img4.jpg}" alt="Four slide"> -->
+                                <!--                             </div> -->
+                                <!--                             <div id="pickD5" class="carousel-item"> -->
+                                <!--                                 <img id="frameD5" class="d-block w-100 image-carousel" th:src="@{/images/img5.jpg}" alt="Five slide"> -->
+                                <!--                             </div> -->
+                                <!--                         </div> -->
+                                <!--                         Carousel controls -->
+                                <!--                         <a class="carousel-control-prev" href="#idCaroselContainersDamage" role="button" data-slide="prev"> -->
+                                <!--                             <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+                                <!--                             <span class="sr-only">Previous</span> -->
+                                <!--                         </a> -->
+                                <!--                         <a class="carousel-control-next" href="#idCaroselContainersDamage" role="button" data-slide="next"> -->
+                                <!--                             <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+                                <!--                             <span class="sr-only">Next</span> -->
+                                <!--                         </a> -->
+                                <!--                     </div> -->
+                                <img id="frameD" class="d-block w-100 image-carousel" th:src="@{/images/img1.jpg}"
+                                    alt="First slide">
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="file" accept="image/*" capture="camera" id="cameraD"
+                                            class="form-control">
+                                    </div>
+                                    <button type="button" class="btn btn-danger">Eliminar</button>
+                                </div>
+                                <br>
+                                <div class="box-custom">
+                                    <button type="button" class="btn color-buttons"
+                                        onclick="setAARCodeDamage()">Agregar</button>
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="closeModalJ2()">Cancelar</button>
+                                </div>
+                                <br>
+                                <div>
+                                    <table class="table">
+                                        <thead class="bkg-thead-table">
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Foto</th>
+                                                <th scope="col">Eliminar</th>
+                                                <th scope="col">JC</th>
+                                                <th scope="col">LC</th>
+                                                <th scope="col">CD</th>
+                                                <th scope="col">REP</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>                                              
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <script>
+                                    var cameraDamage = document.getElementById('cameraD');
+                                    cameraDamage.addEventListener('change', function (e) {
+                                        var file = e.target.files[0];
+                                        //  contadorD += 1;
+                                        //  if (contadorD < 6){
+                                        var elementId = "frameD";
+                                        var frameD = document.getElementById(elementId);
+                                        // Do something with the image file.
+                                        frameD.src = URL.createObjectURL(file);
+                                        //  }					   
+                                    });
+                                </script>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

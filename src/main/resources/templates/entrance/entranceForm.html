@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="UTF-8">
+<title>M-R</title>
+</head>
+<body class="fondo">
+	<section layout:fragment="content" th:remove="tag">
+		<br>
+		<form th:object="${containerForm}" method="POST">
+		<div class="container bkg-form">
+			<fieldset>
+				<legend>Tipo de contenedor</legend>
+				<label for="webdesign"> <input type="radio" value="DryCargo" name="radioButtonContainers" id="idDryCargoSelected" checked>
+					<span>Dry Cargo</span>
+				</label>
+				<label for="webdevelopment">
+				<input type="radio" value="Reefer" name="radioButtonContainers" id="idReeferSelected">
+					<span>Reefer</span>
+				</label>
+			</fieldset>
+			<h1>Ingreso por puerta</h1>
+			<div>
+			<div class="row">
+				<div class="col">
+					<label for="idPrefix">Prefijo:</label>
+					<input id="idPrefix" type="text" class="form-control" placeholder="Prefijo" size="4" maxlength="4">								
+				</div>
+				<div class="col">
+					<label for="idNumber">Número:</label>
+					<input id="idNumber" type="number" class="form-control" placeholder="Número" size="7" maxlength="7">
+				</div>
+				<div class="col">
+					<div class="box">
+						<div class="box-children">
+							<img id="idCheckok" th:src="@{/images/confirm.png}" alt="check-logo" class="confirm-arrive object-hidden">
+							<input id="idSearchContainer" type="button" class="btn color-buttons" value="Comprobar" 
+							onclick="containerExistValidation()">
+						</div>					
+					</div>	
+				</div>							
+			</div>												
+			</div> 
+			<div id="idReefer" class="abs-center">
+				<div class="form-group">
+					<div class="row">
+						<div class="col">
+							<label for="idPropetary">Propietario Contenedor:</label>
+							<select id="idPropetary" th:field="*{ownerIdentifier}" name="idPropetary" class="form-control">
+								<option value="">Seleccionar Propietario</option>
+								<option th:each="entry : ${owners.entrySet()}"
+								th:value="${entry.key}" th:text="${entry.value}">
+								</option>
+							</select>
+							<label for="idContainerSize">Tamaño Contenedor:</label>
+							<select id="idContainerSize" th:field="*{containerSize}" name="idContainerSize" class="form-control">
+								<option value="">Seleccionar Tamaño</option>
+								<option th:each="entry : ${sizes.entrySet()}" th:value = "${entry.key}" th:text="${entry.value}">
+								</option>
+							</select>
+							<label for="idPlacas">Placas:</label>
+							<input id="idPlacas" type="text" class="form-control" placeholder="Placas">
+							<label for="idRemolque">Tipo de Remolque:</label>
+							<select name="idRemolque" id="idRemolque" class="form-control">
+								<option value="">Seleccionar Tipo</option>
+								<option value="CHASIS">Chasis</option>
+								<option value="PLATAFORMA">Plataforma</option>
+							</select>
+							<label for="idYear">Año (Sólo Reefer):</label>
+							<input id="idYear" type="text" class="form-control" placeholder="Año">
+							<label for="idMachinary">Maquinaria (Sólo Reefer):</label>
+							<select id="idMachinary" name="idMachinary" class="form-control">
+								<option value="">Seleccionar Maquinaria</option>
+								<option value="CHASIS">Chasis</option>
+								<option value="PLATAFORMA">Plataforma</option>
+							</select>
+<!-- 							<label for="idOther">Otro:</label> -->
+<!-- 							<input id="idOther" type="text" class="form-control" placeholder="Otro"> -->
+						</div>
+						<div class="col">
+							<label for="idTechnology">Tecnología (Sólo Reefer):</label>
+							<input id="idTechnology" type="text" class="form-control" placeholder="Tecnología">
+							<label for="idSubtype">Sub Tipo de GS (Sólo Reefer):</label>
+							<input id="idSubtype" type="text" class="form-control" placeholder="Sub Tipo de GS">
+							<label for="idCondition">Condición:</label>
+							<select id="idCondition" name="idCondition" class="form-control">
+								<option value="">Seleccionar Condición</option>
+								<option value="EMPTY">Vacío</option>
+								<option value="ULL">Lleno</option>
+							</select>
+							<label for="idOrigin">Origen:</label>
+							<select name="idOrigin" id="idOrigin" class="form-control">
+								<option value="">Seleccionar Origen</option>
+								<option value="IMP">Importación</option>
+								<option value="EXP">Exportación</option>
+							</select>
+							<label for="idTerminal">Teminal:</label>
+							<select  th:field="*{terminalId}" id="idSTerminalCombo" name="idShipOwner" class="form-control">
+								<option value="">Seleccionar Terminal</option>
+								<option th:each="entry : ${terminals.entrySet()}" th:value="${entry.key}" th:text="${entry.value}"></option>
+							</select>
+							<label for="idOperator">Transportista:</label>
+							<input id="idOperator" type="text" class="form-control" placeholder="Transportista">
+							<br>
+							<input id="idAuthorizator" type="button" class="btn btn-primary" value="Ingreso por puerta" onclick="saveContainer()">						
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+		</form>
+		<br>
+		<br>
+		<br>
+		<br>
+	</section>
+</body>
+</html>

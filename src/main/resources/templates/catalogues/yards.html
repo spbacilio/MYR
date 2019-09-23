@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{fragments/layout}">
+<!-- 	<script type="text/javascript" th:src="@{/js/app.js}"></script> -->
+<head>
+<meta charset="UTF-8">
+<title>Patios</title>
+</head>
+<body class="fondo">
+	<section layout:fragment="content" th:remove="tag">
+	<br>
+	<br>
+		<form th:object="${yardForm}" method="POST">		
+		<div class="container bkg-form">
+		<div class="abs-center">
+			<div class="form-group">			
+				<h2 class="align-object">Patios</h2>
+				<label for="idYard">Patio:</label>
+				<input id="idYard" type="text" class="form-control" placeholder="Patio">
+				<br>
+				<input id="idAddYard" type="button" class="btn color-buttons" value="Agregar" onclick="addYard()">
+				<br>
+				<br>
+				<table id="idYardTable" class="table">
+					<thead class="bkg-thead-table">
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Patio</th>
+							<th scope="col" class="object-hidden">Status</th>
+							<th scope="col">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="data:${yardList}">
+							<td th:text="${data.id}"></td>
+							<td th:text="${data.nombrePatio}"></td>
+							<td th:text="${data.status}" class="object-hidden"></td>
+							<td>
+								<button type="button" class="btn btn-danger deleteYard">X</button>
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<h1 class="align-object">Relacionar Patios</h1>
+		<div>
+			<div class="row">
+				<div class="col">
+					<label for="idShipOwner">Terminal:</label>
+					<select  th:field="*{terminalId}" id="idSTerminalCombo" name="idShipOwner" class="form-control" onchange="loadRelationTable()">
+						<option value="">Seleccionar Terminal</option>
+						<option th:each="entry : ${terminalNames.entrySet()}" th:value="${entry.key}" th:text="${entry.value}"></option>
+					</select>
+				</div>
+				<div class="col">
+					<label for="idTerminal">Patio:</label>
+					<select th:field="*{id}" id="idYardCombo" name="idTerminal" class="form-control">
+						<option value="">Seleccionar Patio</option>
+						<option th:each="entry : ${yardNames.entrySet()}" th:value="${entry.key}" th:text="${entry.value}">Dry Cargo</option>
+					</select>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input id="idAddYardRelation" type="button" class="btn color-buttons" value="Agregar" onclick="addYardsRelations()">	
+					</div>					
+				</div>
+			</div>
+			<br>
+			<div>
+				<table class="table">
+					<thead class="bkg-thead-table">
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Description</th>
+							<th scope="col">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody id="ibodyYardRelation">
+						<tr >
+							<td></td>
+							<td></td>
+							<td>
+								<button type="button" class="btn btn-danger deleteYardRelation">X</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>				
+			</div>
+		</div>
+		</div>
+		</form>		
+	</section>
+</body>
+</html>
